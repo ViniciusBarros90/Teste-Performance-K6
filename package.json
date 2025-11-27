@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.5.0",
+    "chai-exclude": "^2.1.1",
+    "mocha": "^11.7.2",
+    "sinon": "^21.0.0",
+    "supertest": "^7.1.4"
+  },
+  "scripts": {
+    "test-controller": "mocha test/controller/**/*.test.js",
+    "test-external": "mocha test/external/**/*.test.js",
+    "test": "mocha test/controller/**/*.test.js test/external/**/*.test.js",
+    "start-rest": "node server.js"
+  }
+}

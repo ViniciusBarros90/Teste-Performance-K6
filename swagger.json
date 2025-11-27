@@ -1,0 +1,108 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Hábitos do Usuário",
+    "version": "1.0.0",
+    "description": "API para cadastro e consulta de hábitos do usuário."
+  },
+  "paths": {
+    "/users/register": {
+      "post": {
+        "summary": "Registrar novo usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["username", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Usuário registrado" },
+          "400": { "description": "Erro de validação ou duplicidade" }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Login do usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["username", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Token JWT retornado" },
+          "401": { "description": "Credenciais inválidas" }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Listar usuários",
+        "responses": {
+          "200": { "description": "Lista de usuários" }
+        }
+      }
+    },
+    "/habits": {
+      "get": {
+        "summary": "Listar hábitos do usuário logado",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Lista de hábitos" },
+          "401": { "description": "Token ausente ou inválido" }
+        }
+      },
+      "post": {
+        "summary": "Registrar novo hábito",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "habit": { "type": "string" }
+                },
+                "required": ["habit"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Hábito registrado" },
+          "400": { "description": "Erro de validação ou duplicidade" },
+          "401": { "description": "Token ausente ou inválido" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
