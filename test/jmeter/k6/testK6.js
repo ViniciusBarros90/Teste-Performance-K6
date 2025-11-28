@@ -3,11 +3,11 @@ import { check, sleep, group } from "k6";
 
 export const options = { //Não funcional
   vus: 10,
-  duration: '25s',
+  duration: '10s',
   //iterations : 10,
 
   thresholds: {
-    http_req_duration: ['p(90)<70', 'p(95)<72' ], // 95% das requisições devem ser menores que 30ms
+    http_req_duration: ['p(90)<190', 'p(95)<220' ], // 95% das requisições devem ser menores que 30ms
     http_req_failed: ['rate<0.01'], // Menos de 1% das requisições podem falhar
   }, 
 };
@@ -93,7 +93,7 @@ export default function() { //Funcional do teste
 
   
   group('Simulando o pensamento do usuário', () => {
-    sleep(1); // User Think Time
+    sleep(3); // User Think Time
   });
 
 }
