@@ -1,0 +1,22 @@
+[
+    {
+        "username": "Maria Silva",
+        "password": "password123"
+    },
+    {
+        "username": "Jane Doe",
+        "password": "password456"
+    },
+    {
+        "username": "Bob Smith",
+        "password": "password789"
+    },
+    {
+        "username": "Julio Cesar",
+        "password": "password789"
+    },
+    {
+        "username": "Bia",
+        "password": "password789"
+    }
+]

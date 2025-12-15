@@ -23,4 +23,13 @@ function listUsers() {
   return users.map(u => ({ username: u.username }));
 }
 
-module.exports = { registerUser, authenticateUser, listUsers };
+function deleteUser(username) {
+  const index = users.findIndex(u => u.username === username);
+  if (index === -1) {
+    throw new Error('Usuário não encontrado');
+  }
+  const removed = users.splice(index, 1)[0];
+  return removed;
+}
+
+module.exports = { registerUser, authenticateUser, listUsers, deleteUser };

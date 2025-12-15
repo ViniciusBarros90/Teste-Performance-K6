@@ -32,4 +32,15 @@ router.get('/', (req, res) => {
   res.json(userService.listUsers());
 });
 
+// Deletar usuário por username
+router.delete('/:username', (req, res) => {
+  const { username } = req.params;
+  try {
+    userService.deleteUser(username);
+    res.json({ message: 'Usuário deletado com sucesso' });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 module.exports = router;
